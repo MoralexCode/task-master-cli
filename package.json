@@ -1,0 +1,51 @@
+{
+	"name": "task-master-cli",
+	"version": "1.0.0",
+	"description": "This app going to help to take control to your activities following GTD method",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"format": "prettier --write \"./**/*.{js,json}\""
+	},
+	"bin": {
+		"taskmastercli": "index.js",
+		"task-master-cli": "index.js",
+		"tm": "index.js",
+		"t": "index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/MoralexCode/task-master-cli.git"
+	},
+	"keywords": [
+		"todo",
+		"todo-cli",
+		"comand-line-interface",
+		"task-master-cli",
+		"taskmacter",
+		"taskmastercli",
+		"GTD",
+		"Getting Things Done",
+		"MoralexCode"
+	],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/MoralexCode/task-master-cli/issues"
+	},
+	"homepage": "https://github.com/MoralexCode/task-master-cli#readme",
+	"dependencies": {
+		"boxen": "^7.0.1",
+		"chalk": "^5.2.0",
+		"clear-any-console": "^1.16.2",
+		"cli-alerts": "^1.2.2",
+		"enquirer": "^2.3.6",
+		"execa": "^6.1.0",
+		"meow": "^11.0.0",
+		"mysql2": "^3.1.2",
+		"ora": "^6.1.2",
+		"sequelize": "^6.28.0",
+		"winston": "^3.8.2"
+	}
+}
