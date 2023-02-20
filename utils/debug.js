@@ -8,7 +8,7 @@ export const debug = (isDebug, input, flags) => {
 
 	log(
 		boxen(` ${cyan(input)} `, {
-			title: 'Input ⌨️',
+			title: 'Input ',
 			titleAlignment: 'center',
 			borderStyle: 'double'
 		})

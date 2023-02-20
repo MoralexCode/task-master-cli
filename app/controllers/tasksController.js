@@ -23,18 +23,13 @@ tasksController.create = async task => {
 //|FIND  tasks BY ID                                                          |
 //|                                                                             |
 //+-----------------------------------------------------------------------------+
-// tasksController.read = async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     if (Util.integerIDValidation(res, id, controllerName)) {
-//       const data = await DB.findOne(tasksModel, id);
-//       Util.dataValidation(res, data, controllerName);
-//     }
-//   } catch (error) {
-//     log(controllerName, Util.readMessage(controllerName, error));
-//     sendError(res, error, Util.readMessage(controllerName, error));
-//   }
-// };
+tasksController.read = async id => {
+	try {
+		return await DB.findOne(id);
+	} catch (error) {
+		showError(error, readMessage(controllerName, error));
+	}
+};
 //+-----------------------------------------------------------------------------+
 //|                                                                             |
 //|                                                                             |
@@ -45,7 +40,6 @@ tasksController.readAll = async () => {
 	try {
 		return await DB.findAll();
 	} catch (error) {
-		// log(controllerName, Util.readMessage(controllerName, error));
 		showError(error, readMessage(controllerName, error));
 	}
 };
@@ -55,28 +49,40 @@ tasksController.readAll = async () => {
 //|UPDATE   tasks  BY ID                                                       |
 //|                                                                             |
 //+-----------------------------------------------------------------------------+
-// tasksController.update = async (req, res) => {
-// 	const {id} = req.params;
-// 	const paylod = req.body;
-// 	try {
-// 		const data = await DB.update(tasksModel, paylod, id);
-// 		Util.updateValidation(res, data, controllerName);
-// 	} catch (error) {
-// 		log(controllerName, Util.readMessage(controllerName, error));
-// 		sendError(res, error, Util.readMessage(controllerName, error));
-// 	}
-// };
-// //+-----------------------------------------------------------------------------+
-// //|                                                                             |
-// //|                                                                             |
-// //|DELETE   tasks  BY ID                                                      |
-// //|                                                                             |
-// //+-----------------------------------------------------------------------------+
+tasksController.update = async (id, update) => {
+	try {
+		const [found] = await tasksController.read(id);
+		if (found) {
+			const {title, description, priority, due, status} = update;
+
+			const taskUpdated = {
+				...found,
+				title: title || found.title,
+				description: description || found.description,
+				priority: priority || found.priority,
+				due: due || found.due,
+				status: status || found.status
+			};
+			const data = await DB.update(id, taskUpdated);
+			return updateValidation(data, controllerName);
+		}
+		throw Error('Empty');
+	} catch (error) {
+		// log(controllerName, Util.readMessage(controllerName, error));
+		showError(error, readMessage(controllerName, error));
+	}
+};
+//+-----------------------------------------------------------------------------+
+//|                                                                             |
+//|                                                                             |
+//|DELETE   tasks  BY ID                                                      |
+//|                                                                             |
+//+-----------------------------------------------------------------------------+
 tasksController.delete = async id => {
 	try {
 		// return await DB.delete(id);
 		const data = await DB.delete(id);
-		deleteValidation(data, controllerName);
+		return deleteValidation(data, controllerName);
 	} catch (error) {
 		// log(controllerName, Util.readMessage(controllerName, error));
 		showError(error, readMessage(controllerName, error));

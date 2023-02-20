@@ -5,33 +5,27 @@ import JsonRecords from 'json-records';
 export const DB = {};
 const jr = new JsonRecords('tasksmaster.json');
 DB.create = async data => {
-	// const {
-	// 	title,
-	// 	description,
-	// 	priority,
-	// 	project_id,
-	// 	reminder_id
-	// } = data;
 	return jr.add(data);
 };
 
 DB.findAll = async => {
 	return jr.get();
 };
-DB.delete = async id => {
-	return jr.remove(record => record === id);
+DB.findOne = async id => {
+	return jr.get(record => record.id === parseInt(id));
 };
+DB.delete = async id => {
+	return jr.remove(record => record.id === parseInt(id));
+};
+DB.update = async (id, update) => {
+	return jr.update(record => record.id === parseInt(id), update);
+};
+
 // DB.create = async (model, paylod) => {
 // 	return await model.create(paylod).then(data => {
 // 		return data;
 // 	});
 // };
-DB.findOne = async (model, id) => {
-	return model.findOne({where: {id, enable: 1}}).then(data => {
-		return data;
-	});
-};
-
 DB.findOneCustomQuery = async (model, query) => {
 	return await collectorModel.sequelize
 		.query(query, {type: Sequelize.QueryTypes.SELECT})
@@ -48,12 +42,6 @@ DB.findAllCustomQuery = async (model, query) => {
 		.then(data => {
 			return data;
 		});
-};
-
-DB.update = async (model, paylod, id) => {
-	return await model.update(paylod, {where: {id}}).then(([rowAffected, rowsUpdate, data]) => {
-		return rowAffected;
-	});
 };
 
 DB.bulkCreate = async (model, paylod) => {

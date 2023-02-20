@@ -47,12 +47,32 @@ function deleteMessage(modelName, error) {
 		error
 	);
 }
+function updateMessage(modelName, error) {
+	return (
+		'An error has occurred to update  ' +
+		modelName.substring(0, modelName.length - 10).toUpperCase() +
+		' : ' +
+		error
+	);
+}
 const deleteValidation = (data, controllerName) => {
 	if (data && data > 0) {
-		message('This was deleted successfully.');
+		return message('This was deleted successfully.');
 	} else {
-		deleteMessage(controllerName, 'Error : delete error.');
+		return deleteMessage(controllerName, 'Error : delete error.');
 	}
+};
+
+const updateValidation = (data, controllerName) => {
+	if (data && data > 0) {
+		return message('This was updated successfully.');
+	} else {
+		return updateMessage(controllerName, 'Error : update error.');
+	}
+};
+
+const getId = () => {
+	return Math.floor((Math.random() * new Date().getTime()) / 10000000000);
 };
 
 global.green = green;
@@ -71,3 +91,5 @@ global.dataValidation = dataValidation;
 global.readMessage = readMessage;
 global.showError = showError;
 global.deleteValidation = deleteValidation;
+global.updateValidation = updateValidation;
+global.getId = getId;

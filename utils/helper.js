@@ -6,6 +6,7 @@ export const helperText = `
         
 		${yellow(`--debug   Show debug information `)}
 		${yellow(`-d , --description   Allow to add description to hte task`)}
+		${yellow(`-p , --priority   Allow to add description to hte task`)}
 		
 	${bold(`Commands`)}
 		${cyan(`help`)}   			Print CLI help information
@@ -40,18 +41,6 @@ export const options = {
 	importMeta: import.meta,
 	booleanDefault: undefined,
 	flags: {
-		social: {
-			type: 'boolean',
-			default: true
-		},
-		ad: {
-			type: 'boolean',
-			default: true
-		},
-		email: {
-			type: 'boolean',
-			default: true
-		},
 		debug: {
 			type: 'boolean',
 			default: false
@@ -68,14 +57,18 @@ export const options = {
 			alias: 'l'
 		},
 		description: {
-			type: 'boolean',
-			default: false,
+			type: 'string',
+			default: '',
 			alias: 'd'
 		},
 		due: {
-			type: 'boolean',
-			default: false,
-			alias: 'due'
+			type: 'string',
+			default: 'today'
+		},
+		priority: {
+			type: 'string',
+			default: 'low',
+			alias: 'p'
 		}
 	}
 };
