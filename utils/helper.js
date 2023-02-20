@@ -1,12 +1,11 @@
 export const helperText = `
 	${bold(`Usage`)}
-		${green(`npx genesiscli`)} ${yellow(`[options]`)} ${cyan(`<commands>`)}
+		${green(`tasksmaster`)} ${yellow(`[options]`)} ${cyan(`<commands>`)}
 
 	${bold(`Options`)}
         
-		${yellow(`-a , --add      	Name of new project`)}
-		${yellow(`--ad          Show ad information`)}
-		${yellow(`-d, --debug   Show debug information `)}
+		${yellow(`--debug   Show debug information `)}
+		${yellow(`-d , --description   Allow to add description to hte task`)}
 		
 	${bold(`Commands`)}
 		${cyan(`help`)}   			Print CLI help information
@@ -55,13 +54,28 @@ export const options = {
 		},
 		debug: {
 			type: 'boolean',
-			default: false,
-			alias: 'd'
+			default: false
+			// alias: 'd'
 		},
 		version: {
 			type: 'boolean',
 			default: false,
 			alias: 'v'
+		},
+		list: {
+			type: 'boolean',
+			default: false,
+			alias: 'l'
+		},
+		description: {
+			type: 'boolean',
+			default: false,
+			alias: 'd'
+		},
+		due: {
+			type: 'boolean',
+			default: false,
+			alias: 'due'
 		}
 	}
 };

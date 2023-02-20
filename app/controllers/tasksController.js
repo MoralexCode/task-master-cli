@@ -14,7 +14,6 @@ tasksController.create = async task => {
 		// await mail.sendMail('oscarmorales.920702@gmail.com');
 		dataValidation(data, controllerName);
 	} catch (error) {
-		// log(controllerName, Util.readMessage(controllerName, error));
 		showError(error, readMessage(controllerName, error));
 	}
 };

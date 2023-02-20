@@ -5,6 +5,13 @@ import JsonRecords from 'json-records';
 export const DB = {};
 const jr = new JsonRecords('tasksmaster.json');
 DB.create = async data => {
+	// const {
+	// 	title,
+	// 	description,
+	// 	priority,
+	// 	project_id,
+	// 	reminder_id
+	// } = data;
 	return jr.add(data);
 };
 

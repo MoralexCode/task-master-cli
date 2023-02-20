@@ -16,8 +16,17 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname);
 (async () => {
 	input.includes('help') && cli.showHelp(0);
 	if (input.includes('add')) {
-		const [, task] = input;
+		const [, title, description] = input;
+		console.log(input);
 		const spinner = ora('Creating task...\n').start();
+		// const [title, description, priority = task;
+
+		const task = {
+			title,
+			description,
+			priority: 'low',
+			due: 'today 9pm'
+		};
 		tasksController.create(task);
 		spinner.succeed(`Task created!`);
 	}
@@ -32,9 +41,11 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname);
 		console.table(await tasksController.readAll());
 	}
 	if (input.includes('remove')) {
+		const spinner = ora('Removing Task...\n').start();
 		console.log(input);
 		const [, id] = input;
 		console.table(await tasksController.delete(id));
+		spinner.succeed(`Task removed!`);
 	}
 	//Debug info if nedeed.
 	debug(flags.debug, input, flags);
