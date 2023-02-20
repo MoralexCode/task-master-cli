@@ -8,6 +8,8 @@ This app going to help to take control to your activities following GTD method
 
 To create a NodeJS project, you can follow these steps:
 
+![genesiscli-screenshot](.github/tasks-master-cli.png)
+
 # Feature
 
     ✓  📦 Create a Node.js APP Project in a seconds
@@ -21,22 +23,35 @@ To create a NodeJS project, you can follow these steps:
 ## ![genesiscli-screenshot](.github/install.png)⬇️ Install
 
 ```sh
-# Recommended.
-npx task-master-cli
 
-# OR an alternative global install.
-npm install cli-todo -g
-npm link
+npm install task-master-cli -g
+
+npm link # some times need execute like sudo user
+
 ```
 
 <br>
 
-![⚙️](https://raw.githubusercontent.com/ahmadawais/stuff/master/images/git/usage.png)
-run this comand:
+![genesiscli-screenshot](.github/pc.png)
+run this comand to add new Task:
 
 ```sh
 # answer the questions
-genesiscli
+t add 'Call the family' --description 'organize party time 😎'
+```
+
+run this comand to add new Task with details:
+
+```sh
+# answer the questions
+t add 'Read a book' --description 'Getting Things Done 📚' --due 'today 9pm' -p 'High'
+```
+
+run this comand to get command helps:
+
+```sh
+# answer the questions
+t help
 ```
 
 # License

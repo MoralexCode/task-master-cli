@@ -1,9 +1,9 @@
-// const Sequelize = require('sequelize');
-// import {Sequelize} from 'sequelize';
+import path from 'path';
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
 import JsonRecords from 'json-records';
-//  JsonRecords = require('json-records');
 export const DB = {};
-const jr = new JsonRecords('tasksmaster.json');
+const jr = new JsonRecords(`${__dirname}/../database/tasksmaster.json`);
+
 DB.create = async data => {
 	return jr.add(data);
 };
@@ -21,11 +21,6 @@ DB.update = async (id, update) => {
 	return jr.update(record => record.id === parseInt(id), update);
 };
 
-// DB.create = async (model, paylod) => {
-// 	return await model.create(paylod).then(data => {
-// 		return data;
-// 	});
-// };
 DB.findOneCustomQuery = async (model, query) => {
 	return await collectorModel.sequelize
 		.query(query, {type: Sequelize.QueryTypes.SELECT})

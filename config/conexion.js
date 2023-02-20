@@ -32,10 +32,3 @@ try {
 } catch (error) {
 	console.error('Unable to connect to the database:', error);
 }
-// Option 3: Passing parameters separately (other dialects)
-// const sequelize = new Sequelize('database', 'username', 'password', {
-//   host: 'localhost',
-//   dialect: /* one of 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql' | 'db2' | 'snowflake' | 'oracle' */
-// });
-// module.exports = conexion;
-// module.exports = sequelize;

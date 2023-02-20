@@ -11,7 +11,6 @@ export const tasksController = {};
 tasksController.create = async task => {
 	try {
 		const data = await DB.create(task);
-		// await mail.sendMail('oscarmorales.920702@gmail.com');
 		dataValidation(data, controllerName);
 	} catch (error) {
 		showError(error, readMessage(controllerName, error));
@@ -68,7 +67,6 @@ tasksController.update = async (id, update) => {
 		}
 		throw Error('Empty');
 	} catch (error) {
-		// log(controllerName, Util.readMessage(controllerName, error));
 		showError(error, readMessage(controllerName, error));
 	}
 };
@@ -80,12 +78,9 @@ tasksController.update = async (id, update) => {
 //+-----------------------------------------------------------------------------+
 tasksController.delete = async id => {
 	try {
-		// return await DB.delete(id);
 		const data = await DB.delete(id);
 		return deleteValidation(data, controllerName);
 	} catch (error) {
-		// log(controllerName, Util.readMessage(controllerName, error));
 		showError(error, readMessage(controllerName, error));
 	}
 };
-// module.exports = tasksController;

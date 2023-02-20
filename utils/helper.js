@@ -35,7 +35,7 @@ export const helperText = `
 		
 	${bold(`Examples`)}
 		${green(`taskmastercli`)} ${yellow(`add myTask`)}
-		${green(`t`)} ${yellow(`aad  myTask`)}l`;
+		${green(`t`)} ${yellow(`aad  myTask`)}`;
 
 export const options = {
 	importMeta: import.meta,

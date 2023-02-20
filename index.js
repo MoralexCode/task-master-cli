@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-import {log} from 'console';
 import meow from 'meow';
 import path from 'path';
 import {tasksController} from './app/controllers/tasksController.js';
@@ -20,7 +19,6 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname);
 		const [, title] = input;
 		const {description, priority, due} = flags;
 		console.log(input);
-		log('flags|', flags);
 		const spinner = ora('Creating task...\n').start();
 		const task = {
 			id: getId(),
