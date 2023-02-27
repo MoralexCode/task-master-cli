@@ -11,6 +11,10 @@ DB.create = async data => {
 DB.findAll = async => {
 	return jr.get();
 };
+
+DB.filter = async => {
+	return jr.get(record => record.status !== 'done');
+};
 DB.findOne = async id => {
 	return jr.get(record => record.id === parseInt(id));
 };

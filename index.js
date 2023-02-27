@@ -15,9 +15,9 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
 (async () => {
 	input.includes('help') && cli.showHelp(0);
+	const {description, priority, due, all} = flags;
 	if (input.includes('add')) {
 		const [, title] = input;
-		const {description, priority, due} = flags;
 		console.log(input);
 		const spinner = ora('Creating task...\n').start();
 		const task = {
@@ -42,7 +42,8 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname);
 	}
 	if (input.includes('list')) {
 		console.log(input);
-		console.table(await tasksController.readAll());
+		const data = all ? await tasksController.readAll() : await tasksController.filter();
+		console.table(data);
 	}
 	if (input.includes('show')) {
 		const [, id] = input;

@@ -7,6 +7,7 @@ export const helperText = `
 		${yellow(`--debug   Show debug information `)}
 		${yellow(`-d , --description   Allow to add description to hte task`)}
 		${yellow(`-p , --priority   Allow to add description to hte task`)}
+		${yellow(`-a , --all   List all task`)}
 		
 	${bold(`Commands`)}
 		${cyan(`help`)}   			Print CLI help information
@@ -18,6 +19,7 @@ export const helperText = `
 		${cyan(`edit <id> <text>`)}   	edit task
 		${cyan(`del <id>`)}   		del task
 		${cyan(`show <id>`)}   		show all task details 
+		
 		${cyan(`prio <id> <flag>`)}   	toggle priority flag
 		${cyan(`due <id> [date]`)}   	set/unset due date (in YYYY-MM-DD format)
 		${cyan(`note <id> <text>`)}   	add note to task
@@ -69,6 +71,11 @@ export const options = {
 			type: 'string',
 			default: 'low',
 			alias: 'p'
+		},
+		all: {
+			type: 'boolean',
+			default: false,
+			alias: 'a'
 		}
 	}
 };
