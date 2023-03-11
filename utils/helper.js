@@ -72,12 +72,10 @@ export const options = {
 		},
 		due: {
 			type: 'string',
-			default: 'today',
 			alias: 'e'
 		},
 		priority: {
 			type: 'string',
-			default: 'low',
 			alias: 'p'
 		},
 		all: {
@@ -97,7 +95,6 @@ export const options = {
 		},
 		type: {
 			type: 'string',
-			default: 'personal',
 			alias: 't'
 		}
 	}

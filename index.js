@@ -60,7 +60,7 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname);
 	if (input.includes('remove')) {
 		const spinner = ora('Removing Task...\n').start();
 		console.log(input);
-		const [id] = input;
+		const [, id] = input;
 		await tasksController.delete(id);
 		console.table(await tasksController.filter());
 		spinner.succeed(`Task removed!`);
