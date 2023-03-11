@@ -15,7 +15,9 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
 (async () => {
 	input.includes('help') && cli.showHelp(0);
-	const {description, priority, due, all, done, status} = flags;
+	const {description, type, priority, due, status, update} = flags;
+
+	// console.log(flags);
 	if (input.includes('add')) {
 		const [, title] = input;
 		console.log(input);
@@ -26,6 +28,7 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname);
 			description,
 			priority: priority || 'low',
 			due: due || 'today 9pm',
+			type: type || 'Personal',
 			status: 'new'
 		};
 		tasksController.create(task);
@@ -57,9 +60,35 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname);
 	if (input.includes('remove')) {
 		const spinner = ora('Removing Task...\n').start();
 		console.log(input);
-		const [, id] = input;
-		console.table(await tasksController.delete(id));
+		const [id] = input;
+		await tasksController.delete(id);
+		console.table(await tasksController.filter());
 		spinner.succeed(`Task removed!`);
+	}
+	if (update) {
+		const spinner = ora('Updating Task...\n').start();
+		console.log(input);
+		console.log(flags);
+		const [id, title] = input;
+		const [task] = await tasksController.read(id);
+		console.log('task|', task);
+		if (task) {
+			const taskUpdated = {
+				...task,
+				title: title || task.title,
+				description: description || task.description,
+				priority: priority || task.priority,
+				due: due || task.due,
+				type: type || task.type,
+				status: status || task.status
+			};
+			console.log('taskUpdated|', taskUpdated);
+			await tasksController.update(id, taskUpdated);
+			console.table(await tasksController.filter());
+			spinner.succeed(`Task updated!`);
+		} else {
+			spinner.info(`Task not updated!`);
+		}
 	}
 	//Debug info if nedeed.
 	debug(flags.debug, input, flags);

@@ -50,7 +50,7 @@ tasksController.readAll = async () => {
 //+-----------------------------------------------------------------------------+
 tasksController.filter = async status => {
 	try {
-		return await DB.filter(status);
+		return await DB.filter(status || 'new');
 	} catch (error) {
 		showError(error, readMessage(controllerName, error));
 	}
@@ -65,7 +65,7 @@ tasksController.update = async (id, update) => {
 	try {
 		const [found] = await tasksController.read(id);
 		if (found) {
-			const {title, description, priority, due, status} = update;
+			const {title, description, priority, due, type, status} = update;
 
 			const taskUpdated = {
 				...found,
@@ -73,6 +73,7 @@ tasksController.update = async (id, update) => {
 				description: description || found.description,
 				priority: priority || found.priority,
 				due: due || found.due,
+				type: type || found.type,
 				status: status || found.status
 			};
 			const data = await DB.update(id, taskUpdated);

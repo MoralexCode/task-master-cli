@@ -37,10 +37,13 @@ export const helperText = `
 		
 	${bold(`Examples`)}
 		${green(`taskmastercli`)} ${yellow(`add myTask`)}
-		${green(`t`)} ${yellow(`aad  myTask`)}
+		${green(`t`)} ${yellow(`add  myTask`)}
 		${green(`t`)} ${yellow(`list`)} # Just list task with 'new' status (default)
 		${green(`t`)} ${yellow(`list -s done`)} # Just list task with 'done' status
 		${green(`t`)} ${yellow(`list -s all`)} # List  all task
+		${green(`t`)} ${yellow(
+	`-u 47 -p one -d 'new_description' -t 'Work' -s new -e tomorrow`
+)} # Update  a task
 		`;
 
 export const options = {
@@ -69,7 +72,8 @@ export const options = {
 		},
 		due: {
 			type: 'string',
-			default: 'today'
+			default: 'today',
+			alias: 'e'
 		},
 		priority: {
 			type: 'string',
@@ -81,15 +85,20 @@ export const options = {
 			default: false,
 			alias: 'a'
 		},
-		done: {
-			type: 'boolean',
-			default: false,
-			alias: 'd'
-		},
 		status: {
 			type: 'string',
 			default: 'new',
 			alias: 's'
+		},
+		update: {
+			type: 'boolean',
+			default: false,
+			alias: 'u'
+		},
+		type: {
+			type: 'string',
+			default: 'personal',
+			alias: 't'
 		}
 	}
 };
