@@ -15,7 +15,7 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
 (async () => {
 	input.includes('help') && cli.showHelp(0);
-	const {description, priority, due, all} = flags;
+	const {description, priority, due, all, done, status} = flags;
 	if (input.includes('add')) {
 		const [, title] = input;
 		console.log(input);
@@ -30,7 +30,7 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname);
 		};
 		tasksController.create(task);
 		spinner.succeed(`Task created!`);
-		console.table(await tasksController.readAll());
+		console.table(await tasksController.filter());
 	}
 	if (input.includes('done')) {
 		console.log(input);
@@ -38,11 +38,15 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname);
 		const spinner = ora(`This ${id} task it´s done`).start();
 		await tasksController.update(id, {status: 'done'});
 		spinner.succeed(`Task ${id} it´s Done!`);
-		console.table(await tasksController.readAll());
+		console.table(await tasksController.filter());
 	}
 	if (input.includes('list')) {
 		console.log(input);
-		const data = all ? await tasksController.readAll() : await tasksController.filter();
+		console.log(status);
+		const data =
+			status === 'all'
+				? await tasksController.readAll()
+				: await tasksController.filter(status);
 		console.table(data);
 	}
 	if (input.includes('show')) {

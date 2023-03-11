@@ -48,9 +48,9 @@ tasksController.readAll = async () => {
 //|GET LIST OF tasks CUSTOM QUERY                                            |
 //|                                                                             |
 //+-----------------------------------------------------------------------------+
-tasksController.filter = async () => {
+tasksController.filter = async status => {
 	try {
-		return await DB.filter();
+		return await DB.filter(status);
 	} catch (error) {
 		showError(error, readMessage(controllerName, error));
 	}

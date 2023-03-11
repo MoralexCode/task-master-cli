@@ -37,7 +37,11 @@ export const helperText = `
 		
 	${bold(`Examples`)}
 		${green(`taskmastercli`)} ${yellow(`add myTask`)}
-		${green(`t`)} ${yellow(`aad  myTask`)}`;
+		${green(`t`)} ${yellow(`aad  myTask`)}
+		${green(`t`)} ${yellow(`list`)} # Just list task with 'new' status (default)
+		${green(`t`)} ${yellow(`list -s done`)} # Just list task with 'done' status
+		${green(`t`)} ${yellow(`list -s all`)} # List  all task
+		`;
 
 export const options = {
 	importMeta: import.meta,
@@ -76,6 +80,16 @@ export const options = {
 			type: 'boolean',
 			default: false,
 			alias: 'a'
+		},
+		done: {
+			type: 'boolean',
+			default: false,
+			alias: 'd'
+		},
+		status: {
+			type: 'string',
+			default: 'new',
+			alias: 's'
 		}
 	}
 };

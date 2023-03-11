@@ -12,8 +12,8 @@ DB.findAll = async => {
 	return jr.get();
 };
 
-DB.filter = async => {
-	return jr.get(record => record.status !== 'done');
+DB.filter = async status => {
+	return jr.get(record => record.status === status);
 };
 DB.findOne = async id => {
 	return jr.get(record => record.id === parseInt(id));
