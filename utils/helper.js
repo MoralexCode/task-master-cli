@@ -8,6 +8,7 @@ export const helperText = `
 		${yellow(`-d , --description   Allow to add description to hte task`)}
 		${yellow(`-p , --priority   Allow to add description to hte task`)}
 		${yellow(`-a , --all   List all task`)}
+		${yellow(`-e , --expired   task expire `)}
 		
 	${bold(`Commands`)}
 		${cyan(`help`)}   			Print CLI help information
@@ -21,7 +22,6 @@ export const helperText = `
 		${cyan(`show <id>`)}   		show all task details 
 		
 		${cyan(`prio <id> <flag>`)}   	toggle priority flag
-		${cyan(`due <id> [date]`)}   	set/unset due date (in YYYY-MM-DD format)
 		${cyan(`note <id> <text>`)}   	add note to task
 		${cyan(`delnote <id> [number]`)}	delete a specific or all notes from task
 
@@ -70,7 +70,7 @@ export const options = {
 			default: '',
 			alias: 'd'
 		},
-		due: {
+		expire: {
 			type: 'string',
 			alias: 'e'
 		},

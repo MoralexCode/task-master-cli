@@ -15,7 +15,7 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
 (async () => {
 	input.includes('help') && cli.showHelp(0);
-	const {description, type, priority, due, status, update} = flags;
+	const {description, type, priority, expire, status, update} = flags;
 
 	// console.log(flags);
 	if (input.includes('add')) {
@@ -27,7 +27,7 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname);
 			title,
 			description,
 			priority: priority || 'low',
-			due: due || 'today 9pm',
+			expire: expire || 'today 9pm',
 			type: type || 'Personal',
 			status: 'new'
 		};
@@ -45,7 +45,6 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname);
 	}
 	if (input.includes('list')) {
 		console.log(input);
-		console.log(status);
 		const data =
 			status === 'all'
 				? await tasksController.readAll()
@@ -78,7 +77,7 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname);
 				title: title || task.title,
 				description: description || task.description,
 				priority: priority || task.priority,
-				due: due || task.due,
+				expire: expire || task.expire,
 				type: type || task.type,
 				status: status || task.status
 			};

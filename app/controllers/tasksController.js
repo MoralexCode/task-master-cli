@@ -65,14 +65,14 @@ tasksController.update = async (id, update) => {
 	try {
 		const [found] = await tasksController.read(id);
 		if (found) {
-			const {title, description, priority, due, type, status} = update;
+			const {title, description, priority, expire, type, status} = update;
 
 			const taskUpdated = {
 				...found,
 				title: title || found.title,
 				description: description || found.description,
 				priority: priority || found.priority,
-				due: due || found.due,
+				expire: expire || found.expire,
 				type: type || found.type,
 				status: status || found.status
 			};
